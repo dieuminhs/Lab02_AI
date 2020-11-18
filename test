@@ -1,0 +1,66 @@
+%% Bo cau hoi cho he tri thuc gia dinh Hoang gia Anh
+
+/*
+1/ Ai la anh/chi/em cua Princess Anne ?
+2/ Ai la con cua Princess Diana ?
+3/ Ai la cha cua Prince Edward ?
+4/ Ai la chu cua Princess Eugenie ?
+5/ Peter Phillips co phai la anh/em cua Zara Phillips hay khong ?
+6/ Mia Grace Tindall co phai la chau gai cua Princess Anne hay khong ?
+7/ Princess Eugenie co phai la anh/chi/em cua James Viscount Severn hay khong ?
+8/ Ai la ong cua Princess Charlotte ?
+9/ Prince Harry co phai la anh/em cua Prince William hay khong ?
+10/ Prince Charles co phai la chu cua Zara Phillips hay khong ?
+11/ Ai la con cua Prince Phillip ?
+12/ Ai la con gai cua Sarah Ferguson ?
+13/ Ai la chau trai cua Queen Elizabeth II ?
+14/ Princess Anne co phai la ba` cua Princess Charlotte hay khong ?
+15/ Camilla Parker Bowles co phai la chu cua Prince Harry hay khong ?
+16/ Captain Mark Phillips co phai la chong cua Princess Anne hay khong ?
+17/ Ai la me cua Lady Louise Mountbatten Windsor ?
+18/ Ai la vo cua Timothy Laurence ?
+19/ Co phai Prince Charles da ly di voi Princess Diana ?
+20/ Prince Edward la chong cua ai ?
+*/
+
+:- ensure_loaded([new]).
+run :-
+    repeat,
+    write('> '),
+    read(X),
+    cau(X),
+    fail.
+    cau(1) :- sibling(princess_Anne,X), write('Cau 1: ') , write(X), nl.
+cau(2) :- child(X,princess_Diana), write('Cau 2: '), write(X), nl.
+cau(3) :- father(X,prince_Edward), write('Cau 3: '), write(X), nl.
+cau(4) :- uncle(X,princess_Eugenie), write('Cau 4: '), write(X), nl.
+cau(5) :- write('Cau 5: '),brother(peter_Phillips,zara_Phillips)->write(true), nl;
+write(false), nl.
+cau(6) :- write('Cau 6: '),granddaughter(mia_Grace_Tindall,princess_Anne)->write(true), nl;
+write(false), nl.
+cau(7) :- write('Cau 7: '),sibling(princess_Eugenie,james_Viscount_Severn)->write(true), nl;
+write(false), nl.
+cau(8) :- grandfather(X,princess_Charlotte), write('Cau 8: '), write(X), nl.
+cau(9) :- write('Cau 9: '),brother(prince_Harry,prince_William)->write(true), nl;
+write(false), nl.
+cau(10) :- write('Cau 10: '),uncle(prince_Charles,zara_Phillips)->write(true), nl;
+write(false), nl.
+cau(11) :- child(X,prince_Phillip), write('Cau 11: '), write(X), nl.
+cau(12) :- daughter(X,sarah_Ferguson), write('Cau 12: '), write(X), nl.
+cau(13) :- grandson(X,queen_Elizabeth_II), write('Cau 13: '), write(X), nl.
+cau(14) :- write('Cau 14: '),grandmother(princess_Anne,princess_Charlotte)->write(true), nl;
+write(false), nl.
+cau(15) :- write('Cau 15: '),uncle(camilla_Parker_Bowles,prine_Harry)->write(true), nl;
+write(false), nl.
+cau(16) :- write('Cau 16: '),husband(captain_Mark_Phillips,priness_Anne)->write(true), nl;
+write(false), nl.
+cau(17) :- mother(X,lady_Louise_Mountbatten_Windsor), write('Cau 17: '), write(X), nl.
+cau(18) :- wife(X,timothy_Laurence), write('Cau 18: '), write(X), nl.
+cau(19) :- write('Cau 19: '),divorced(prince_Charles,princess_Diana)->write(true), nl;
+write(false), nl.
+cau(20) :- husband(prince_Edward,X), write('Cau 20: '), write(X), nl.
+
+
+
+
+
