@@ -1,0 +1,196 @@
+married(X,Y):-
+    married_to(X,Y).
+
+married(X,Y):-
+    married_to(Y,X).
+
+husband(Person,Wife):-
+    male(Person),
+    female(Wife),
+    married(Person,Wife).
+
+wife(Person,Husband):-
+    female(Person),
+    male(Husband),
+    married(Person,Husband).
+
+father(Parent,Child):-
+    male(Parent),
+    parent(Parent,Child).
+
+mother(Parent,Child):-
+    female(Parent),
+    parent(Parent,Child).
+
+
+child(Child,Parent):-
+    parent(Parent,Child).
+
+son(Child,Parent):-
+    male(Child),
+    parent(Parent,Child).
+
+daughter(Child,Parent):-
+    female(Child),
+    parent(Parent,Child).
+
+grandparent(GP,GC):-
+    parent(GP,X),
+    parent(X,GC).
+
+grandmother(GM,GC):-
+    female(GM),
+    parent(GM,X),
+    parent(X,GC).
+
+grandfather(GF,GC):-
+    male(GF),
+    parent(GF,X),
+    parent(X,GC).
+
+grandchild(GC,GP):-
+    parent(GP,X),
+    parent(X,GC).
+
+grandson(GS,GP):-
+    male(GS),
+    parent(GP,X),
+    parent(X,GS).
+
+granddaughter(GD,GP):-
+    female(GD),
+    parent(GP,X),
+    parent(X,GD).
+
+sibling_old(Person1,Person2):-
+    parent(X,Person1),
+    parent(X,Person2),
+    Person1\=Person2.
+
+sibling(Person1,Person2):-
+    setof((Person1,Person2),P^(parent(P,Person1),
+                               parent(P,Person2),\+Person1=Person2),Sibs),
+    member((Person1,Person2), Sibs).
+
+brother_fact(Person,Sibling):-
+    Person\==Sibling,
+    male(Person),
+    parent(X,Person),
+    parent(X,Sibling).
+
+brother(Person,Sibling):- brother_fact(Person,Sibling).
+brother(Person,Sibling):- brother_fact(Sibling,Person).
+
+sister(Person,Sibling):-
+    Person\==Sibling,
+    female(Person),
+    parent(X,Person),
+    parent(X,Sibling).
+
+sister(Person,Sibling):-
+    Person\==Sibling,
+    female(Sibling),
+    parent(X,Person),
+    parent(X,Sibling).
+
+aunt(Person,NieceNephew):-
+    female(Person),
+    sibling(Person,X),
+    X\==Person,
+    parent(X,NieceNephew).
+
+uncle(Person,NieceNephew):-
+    male(Person),
+    sibling(Person,X),
+    X\==Person,
+    parent(X,NieceNephew).
+
+niece(Person,AuntUncle):-
+    male(Person),
+    sibling(AuntUncle,X),
+    X\==AuntUncle,
+    parent(X,Person).
+
+nephew(Person,AuntUncle):-
+    female(Person),
+    sibling(AuntUncle,X),
+    X\==AuntUncle,
+    parent(X,Person).
+
+male(prince_Phillip).
+male(prince_Charles).
+male(captain_Mark_Phillips).
+male(timothy_Laurence).
+male(prince_Andrew).
+male(prince_Edward).
+male(prince_William).
+male(prince_Harry).
+male(peter_Phillips).
+male(mike_Tindall).
+male(james_Viscount_Severn).
+male(prince_George).
+
+
+female(queen_Elizabeth_II).
+female(princess_Diana).
+female(camilla_Parker_Bowles).
+female(princess_Anne).
+female(sarah_Ferguson).
+female(sophie_Rhys_jones).
+female(kate_Middleton).
+female(autumn_Kelly).
+female(zara_Phillips).
+female(princess_Beatrice).
+female(princess_Eugenie).
+female(lady_Louise_Mountbatten_Windsor).
+female(princess_Charlotte).
+female(savannah_Phillips).
+female(isla_Phillips).
+female(mia_Grace_Tindall).
+
+married_to(queen_Elizabeth_II,prince_Phillip).
+married_to(prince_Charles,camilla_Parker_Bowles).
+married_to(timothy_Laurence,princess_Anne).
+married_to(prince_Edward,sophie_Rhys_jones).
+married_to(prince_William,kate_Middleton).
+married_to(peter_Phillips,autumn_Kelly).
+married_to(mike_Tindall,zara_Phillips).
+
+divorced(prince_Charles,princess_Diana).
+divorced(captain_Mark_Phillips,princess_Anne).
+divorced(prince_Andrew,sarah_Ferguson).
+
+parent(queen_Elizabeth_II,prince_Charles).
+parent(queen_Elizabeth_II,princess_Anne).
+parent(queen_Elizabeth_II,prince_Andrew).
+parent(queen_Elizabeth_II,prince_Edward).
+parent(prince_Phillip,prince_Charles).
+parent(prince_Phillip,princess_Anne).
+parent(prince_Phillip,prince_Andrew).
+parent(prince_Phillip,prince_Edward).
+parent(prince_Charles,prince_William).
+parent(prince_Charles,prince_Harry).
+parent(princess_Diana,prince_William).
+parent(princess_Diana,prince_Harry).
+parent(princess_Anne,peter_Phillips).
+parent(princess_Anne,zara_Phillips).
+parent(captain_Mark_Phillips,peter_Phillips).
+parent(captain_Mark_Phillips,zara_Phillips).
+parent(prince_Andrew,princess_Beatrice).
+parent(prince_Andrew,princess_Eugenie).
+parent(sarah_Ferguson,princess_Beatrice).
+parent(sarah_Ferguson,princess_Eugenie).
+parent(prince_Edward,james_Viscount_Severn).
+parent(prince_Edward,lady_Louise_Mountbatten_Windsor).
+parent(sophie_Rhys_jones,james_Viscount_Severn).
+parent(sophie_Rhys_jones,lady_Louise_Mountbatten_Windsor).
+parent(prince_William,prince_George).
+parent(prince_William,princess_Charlotte).
+parent(kate_Middleton,prince_George).
+parent(kate_Middleton,princess_Charlotte).
+parent(peter_Phillips,savannah_Phillips).
+parent(peter_Phillips,isla_Phillips).
+parent(autumn_Kelly,savannah_Phillips).
+parent(autumn_Kelly,isla_Phillips).
+parent(mike_Tindall,mia_Grace_Tindall).
+parent(zara_Phillips,mia_Grace_Tindall).
