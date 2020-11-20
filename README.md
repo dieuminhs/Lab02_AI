@@ -1,7 +1,7 @@
 # Lab02_AI 
 Hướng dẫn chạy test case pl :\
 B1 : Chỉnh sửa đường dẫn đọc file của SWI-Prolog, Câu lệnh : working_directory(CWD,"Destination Directory")\
-VD : working_directory(CWD,"D:\Python").\
+VD : working_directory(CWD,"D:/Python").\
 B2 : Đọc file test case, câu lệnh : [filename]\
 VD : [test].\
 B3 : Chạy các test case, bắt đầu bằng câu lệnh run.\
